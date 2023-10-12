@@ -3,7 +3,7 @@
 Welcome to the Photography Club website, a project developed by our team for the web programming course. This web application serves as a platform for photography enthusiasts to connect, share their work, and engage with the club's activities.
 
 ## Team Members
-   # Group Name-TeamMeta
+   ### Group Name-TeamMeta
 
 - Mirza Abbas Uddin (Team Lead)
 - Sanjana Hossain Sonali
