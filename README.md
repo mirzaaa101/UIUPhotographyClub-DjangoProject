@@ -45,8 +45,8 @@ Visit `http://localhost:8000` in your web browser to access the project.
 
 ## Usage
 
-- Sign up or log in to explore the features of the Photography Club website.
-- Share your photos, participate in events, and engage in discussions with fellow members.
+- Visit to explore the features of the Photography Club website.
+- Explore the events, participate in events, and engage in discussions with fellow members.
 
 ## Acknowledgments
 
