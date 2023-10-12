@@ -1,0 +1,48 @@
+{% load static %}
+<style>
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.682);
+  height: 150px;
+  width: 100%;
+}
+
+.footer .copyright {
+  padding-top: 10px; /* Adjust as needed */
+  color: #fff;
+}
+
+.footer .divider {
+  width: 80%; /* Make the line span the entire width of the footer */
+  height: 1px; /* Adjust the thickness of the line as needed */
+  background-color: #fff; /* Line color */
+  margin: 10px 0;
+}
+
+.footer .social-media {
+  padding-top: 10px; /* Adjust as needed */
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+}
+.logo:hover{
+  height: 60px;
+  width: 60px;
+}
+</style>
+
+<footer class="footer">
+  <div class="copyright">
+    Copyright TeamMeta 2023
+  </div>
+  <div class="divider"></div>
+  <div class="social-media">
+    <a href="https://www.facebook.com/UIUPC"><img src="{% static 'Files/facebook_icon.png' %}" alt="Facebook" class="logo"></a>
+    <a href="https://www.instagram.com/teammeta"><img src="{% static 'Files/instagram_icon.png' %}" alt="Instagram" class="logo"></a>
+    <a href="https://www.linkedin.com/company/teammeta"><img src="{% static 'Files/linkedin_icon.png' %}" alt="Linkedin" class="logo"></a>
+  </div>
+</footer>

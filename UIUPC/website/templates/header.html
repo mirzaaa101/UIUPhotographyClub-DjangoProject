@@ -1,0 +1,76 @@
+{% load static %}
+<style>
+  .nav-item:hover {
+    background-color: #ccc;
+  }
+  li{
+    border-radius: 10px;
+  }
+  #drop-btn{
+    border-radius: 10px;
+  }
+  #drop-btn:hover{
+    background-color: #ccc;
+  }
+/* Hide the dropdown menu on small screens */
+@media (max-width: 768px) {
+  .nav-item.dropdown .dropdown-menu {
+    display: none;
+  }
+}
+
+/* Show the dropdown menu on hover on large screens */
+@media (min-width: 769px) {
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Make the dropdown menu clickable on all screen sizes */
+.span.navbar-toggler-icon {
+  cursor: pointer;
+}
+
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'Files/logo.svg' %}" alt="Logo" width="35" height="30" class="d-inline-block align-text-top">
+      <strong style="font-style: italic;"><a href="#" style="text-decoration: none;color: black;font-size: 20px;">UIUPC</a></strong>
+    </a>
+
+    <form class="d-flex justify-content-center navbar-form" style="width: 600px;margin-left: 250px;">
+      <input class="form-control me-2" type="search" placeholder="Search For Events..." aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <div class="collapse navbar-collapse me-2" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-10 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"><strong>Home</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#"><strong>Events</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#"><strong>FAQs</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#"><strong>About Us</strong></a>
+        </li>
+        <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="span navbar-toggler-icon"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="nav-link active" href="#" id= "drop-btn",style="font-size: 15px;">Admin Mode</a>
+              </li>
+            </ul>
+          </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
