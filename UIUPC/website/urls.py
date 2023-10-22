@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('onlineregistration', views.registration, name='registration'),
     path('faqs', views.faqs, name='faqs'),
+    path('events', views.events, name='events'),
+    path('events/<int:event_id>/', views.event_detail, name='event_detail')
 ]
 
 if settings.DEBUG:

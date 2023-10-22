@@ -4,12 +4,14 @@ from django.contrib.auth.models import User
 from .models import RegistrationRequest
 from UIUPC import settings
 from django.core.mail import send_mail
-from .models import Notice
-from .models import FAQ
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from .models import Notice, FAQ, Event
 
 def home(request):
     recent_notices = Notice.objects.order_by('-created_at')[:2]
-    return render(request, 'home.html', {'recent_notices': recent_notices})
+    recent_events = Event.objects.order_by('-created_at')[:4]
+    return render(request, 'home.html', {'recent_notices': recent_notices, 'recent_events': recent_events})
 
 def registration(request):
     if request.method == 'POST':
@@ -50,3 +52,15 @@ def registration(request):
 def faqs(request):
     faqs = FAQ.objects.all()
     return render(request,'faqs.html', {'faqs':faqs})
+
+
+def events(request):
+    events = Event.objects.all()
+    for event in events:
+        time_difference = timezone.now() - event.created_at
+        event.time_since_creation = time_difference.total_seconds() / 60
+    return render(request, 'events.html', {'events':events})
+
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'event_detail.html', {'event': event})

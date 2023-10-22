@@ -36,3 +36,18 @@ class FAQ(models.Model):
 
     def __str__(self):
         return f"{self.question}"
+
+
+class Event(models.Model):
+    e_id = models.AutoField(primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=1200)
+    location = models.CharField(max_length=100)
+    event_date = models.DateField()
+    event_time = models.TimeField()
+    event_photo = models.ImageField(upload_to='Files/Events/')
+    join_event = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Event-: {self.title}"
