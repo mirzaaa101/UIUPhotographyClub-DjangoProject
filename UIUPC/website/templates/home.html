@@ -4,269 +4,277 @@
 
 {% block content%}
 <style>
-.image-container {
-  background-image: url("{% static 'Files/cover.jpg' %}");
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 400px;
-  opacity: 0.7;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .image-container {
+    background-image: url("{% static 'Files/cover.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 400px;
+    opacity: 0.7;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card:hover {
+        transform: scale(1.01);
+        background-color: #ffffffb9;
+  }
+  .content {
+    flex: 1;
+    max-width: 35%;
+    color: #fff;
+    font-weight: bolder;
+  }
 
-.content {
-  flex: 1;
-  max-width: 35%;
-  color: #fff;
-  font-weight: bolder;
-}
-#typed-text {
-  overflow: hidden;
-}
+  #typed-text {
+    overflow: hidden;
+  }
 
-/* Optional styling for the cursor */
-#typed-cursor {
-  border-left: 2px solid #000;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0% {
+  /* Optional styling for the cursor */
+  #typed-cursor {
     border-left: 2px solid #000;
+    animation: blink 1s infinite;
   }
-  50% {
-    border-left: 2px solid transparent;
-  }
-  100% {
-    border-left: 2px solid #000;
-  }
-}
 
-.buttons {
+  @keyframes blink {
+    0% {
+      border-left: 2px solid #000;
+    }
+
+    50% {
+      border-left: 2px solid transparent;
+    }
+
+    100% {
+      border-left: 2px solid #000;
+    }
+  }
+
+  .buttons {
     margin-right: 200px;
-}
+  }
 
-#button-join{
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.976);
-  color: #fff; /* Button text color */
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-right: 20px;
-}
-#button-explore {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.657);
-  color: #fff; /* Button text color */
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-left: 10px;
-}
-#button-join:hover,
-#button-explore:hover {
+  #button-join {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.976);
+    color: #fff;
+    /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  #button-explore {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.657);
+    color: #fff;
+    /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  #button-join:hover,
+  #button-explore:hover {
     color: black;
     background-color: white;
-}
-.continue-reading {
-  display: flex;
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-  font-size: 15px;
-  font-style: italic;
-}
-.continue-reading:hover {
-  text-decoration: underline;
-}
-.mid {
-  height: 800px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.left{
+  }
+
+  .continue-reading {
+    display: flex;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  .continue-reading:hover {
+    text-decoration: underline;
+  }
+
+  .mid {
+    height: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left {
     background-color: transparent;
     border-radius: 10px;
     border-color: transparent;
     text-align: center;
-}
-.left, .right {
-  flex: 1;
-}
-.why-join {
-  display: flex;
-  align-items: center;
-}
+  }
+
+  .left,
+  .right {
+    flex: 1;
+  }
+
+  .why-join {
+    display: flex;
+    align-items: center;
+  }
 </style>
 <br>
 <div class="image-container">
-    <div class="content">
-        <h1>
-            <strong id="typed-text"></strong>
-        </h1>
-    </div>
-    <div class="buttons">
-        <a href="{% url 'registration' %}" id="button-join">Join us</a>
-        <a href="#" id="button-explore">Explore</a>
-    </div>
+  <div class="content">
+    <h1>
+      <strong id="typed-text"></strong>
+    </h1>
+  </div>
+  <div class="buttons">
+    <a href="{% url 'registration' %}" id="button-join">Join us</a>
+    <a href="#" id="button-explore">Explore</a>
+  </div>
 </div>
 <br><br>
-<div class="d-flex" style="margin-right: 100px;">
-    <div class="card mb-3" style="max-width: 540px; margin-right: 10px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="{% static 'Files/facebook_icon.png' %}" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Important Notice</strong></h5>
-            <p class="card-text"><small class="text-muted">Oct 12</small></p>
-            <p class="card-text">Our recruitment process is going on. Enthusiasts don't miss the chance. You will find us at the 1st floor...
-                <a class="continue-reading" href="#">Continue Reading</a>
-            </p>
-          </div>
+<div class="d-flex" >
+  {% for notice in recent_notices %}
+  <div class="card mb-3" style="max-width: 540px; margin-right: 140px;" id="post">
+    <div class="row g-0">
+      <div class="col-md-3">
+        <img src="{{ notice.notice_image.url }}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><strong>{{ notice.notice_title }}</strong></h5>
+          <p class="card-text"><small class="text-muted">{{ notice.created_at|date:"M d" }}</small></p>
+          <p class="card-text">{{ notice.notice_description }}</p>
         </div>
       </div>
     </div>
-    <div class="card mb-3" style="max-width: 540px;margin-left:100px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="{% static 'Files/instagram_icon.png' %}" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Featured Post</strong></h5>
-            <p class="card-text"><small class="text-muted">Oct 12</small></p>
-            <p class="card-text">Our recruitment process is going on. Enthusiasts don't miss the chance. You will find us at the 1st floor...
-                <a class="continue-reading" href="#">Continue Reading</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+  {% endfor %}
 </div>
 <br><br><br>
 <div class="mid">
-    <div class="left">
-        <h1 style="color: black;font-weight: bolder;font-size: 50px;">
-            Why JOIN UIU PHOTOGRAPHY CLUB?
-        </h1>
-        <ul>
-            <li class="why-join">
-                <div class="card" style="height: 150px; width: 100%;border-color: transparent;">
-                    <img src="{% static 'Files/social.jpg' %}" class="card-img-top" alt="..." style="height: 80px;width: 100px; margin: 0 auto;">
-                    <div class="card-body">
-                      <h5 class="card-title" style="color: black;font-weight: bold;">Social</h5>
-                      <p class="card-text" style="color: rgba(0, 0, 0, 0.542);">They are a great way to meet new friends & have a lot of fun at the same time!</p>
-                </div>
-            </li>
-            <li class="why-join">
-                <div class="card" style="height: 150px; width: 100%;border-color: transparent;">
-                    <img src="{% static 'Files/growth.jpeg' %}" class="card-img-top" alt="..." style="height: 80px;width: 100px; margin: 0 auto;">
-                    <div class="card-body">
-                      <h5 class="card-title" style="color: black;font-weight: bold;">Growth</h5>
-                      <p class="card-text" style="color: rgba(0, 0, 0, 0.542);">Members will be encouraging and supportive of your personal growth & goals!</p>
-                </div>
-            </li>
-            <li class="why-join">
-                <div class="card" style="height: 150px; width: 100%;border-color: transparent;">
-                    <img src="{% static 'Files/exposure.png' %}" class="card-img-top" alt="..." style="height: 80px;width: 100px; margin: 0 auto;">
-                    <div class="card-body">
-                      <h5 class="card-title" style="color: black;font-weight: bold;">Exposure</h5>
-                      <p class="card-text" style="color: rgba(0, 0, 0, 0.542);">Camera Clubs expose you to real life experiences such as model shoots, Wedding shoots, and other directions!</p>
-                </div>
-            </li>
-          </ul>
+  <div class="left">
+    <h1 style="color: black;font-weight: bolder;font-size: 50px;">
+      Why JOIN UIU PHOTOGRAPHY CLUB?
+    </h1>
+    <ul>
+      <li class="why-join">
+        <div class="card" style="height: 150px; width: 100%;border-color: transparent;">
+          <img src="{% static 'Files/social.jpg' %}" class="card-img-top" alt="..."
+            style="height: 80px;width: 100px; margin: 0 auto;">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black;font-weight: bold;">Social</h5>
+            <p class="card-text" style="color: rgba(0, 0, 0, 0.542);">They are a great way to meet new friends & have a
+              lot of fun at the same time!</p>
+          </div>
+      </li>
+      <li class="why-join">
+        <div class="card" style="height: 150px; width: 100%;border-color: transparent;">
+          <img src="{% static 'Files/growth.jpeg' %}" class="card-img-top" alt="..."
+            style="height: 80px;width: 100px; margin: 0 auto;">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black;font-weight: bold;">Growth</h5>
+            <p class="card-text" style="color: rgba(0, 0, 0, 0.542);">Members will be encouraging and supportive of your
+              personal growth & goals!</p>
+          </div>
+      </li>
+      <li class="why-join">
+        <div class="card" style="height: 150px; width: 100%;border-color: transparent;">
+          <img src="{% static 'Files/exposure.png' %}" class="card-img-top" alt="..."
+            style="height: 80px;width: 100px; margin: 0 auto;">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black;font-weight: bold;">Exposure</h5>
+            <p class="card-text" style="color: rgba(0, 0, 0, 0.542);">Camera Clubs expose you to real life experiences
+              such as model shoots, Wedding shoots, and other directions!</p>
+          </div>
+      </li>
+    </ul>
+  </div>
+  <div class="right">
+    <h2 style="position: absolute;margin-left: 10px;font-weight: bolder;">Recent Events</h2>
+    <br>
+    <hr class="my-4">
+    <div class="card mb-3" style="max-width: 740px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Event Title 1</h5>
+            <p class="card-text"><small class="text-muted">Oct 12</small></p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="right">
-        <h2 style="position: absolute;margin-left: 10px;font-weight: bolder;">Recent Events</h2>
-        <br><hr class="my-4">
-        <div class="card mb-3" style="max-width: 740px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Event Title 1</h5>
-                  <p class="card-text"><small class="text-muted">Oct 12</small></p>
-                </div>
-              </div>
-            </div>
+    <div class="card mb-3" style="max-width: 740px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Event Title 2</h5>
+            <p class="card-text"><small class="text-muted">Oct 12</small></p>
           </div>
-          <div class="card mb-3" style="max-width: 740px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Event Title 2</h5>
-                  <p class="card-text"><small class="text-muted">Oct 12</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-3" style="max-width: 740px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Event Title 3</h5>
-                  <p class="card-text"><small class="text-muted">Oct 12</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-3" style="max-width: 740px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Event Title 4</h5>
-                  <p class="card-text"><small class="text-muted">Oct 12</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+      </div>
     </div>
+    <div class="card mb-3" style="max-width: 740px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Event Title 3</h5>
+            <p class="card-text"><small class="text-muted">Oct 12</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 740px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{% static 'Files/event.jpg' %}" class="img-fluid rounded-start" alt="Event Image" height="100px">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Event Title 4</h5>
+            <p class="card-text"><small class="text-muted">Oct 12</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-const text = "UIU Photography Club (UIUPC) is one of the oldest clubs of United International University.";
-const textElement = document.getElementById('typed-text');
-let textIndex = 0;
-let typingInterval = 50; // Adjust the typing speed (in milliseconds)
-let pauseInterval = 5000; // 5 seconds pause (in milliseconds)
+  const text = "UIU Photography Club (UIUPC) is one of the oldest clubs of United International University.";
+  const textElement = document.getElementById('typed-text');
+  let textIndex = 0;
+  let typingInterval = 50; // Adjust the typing speed (in milliseconds)
+  let pauseInterval = 5000; // 5 seconds pause (in milliseconds)
 
-function typeText() {
-  if (textIndex < text.length) {
-    textElement.textContent += text.charAt(textIndex);
-    textIndex++;
-    setTimeout(typeText, typingInterval);
-  } else {
-    // Pause for 5 seconds before starting over
-    setTimeout(startOver, pauseInterval);
+  function typeText() {
+    if (textIndex < text.length) {
+      textElement.textContent += text.charAt(textIndex);
+      textIndex++;
+      setTimeout(typeText, typingInterval);
+    } else {
+      // Pause for 5 seconds before starting over
+      setTimeout(startOver, pauseInterval);
+    }
   }
-}
 
-function startOver() {
-  textElement.textContent = '';
-  textIndex = 0;
-  setTimeout(typeText, 0); // Start typing immediately
-}
+  function startOver() {
+    textElement.textContent = '';
+    textIndex = 0;
+    setTimeout(typeText, 0); // Start typing immediately
+  }
 
-typeText();
+  typeText();
 </script>
 {%endblock%}

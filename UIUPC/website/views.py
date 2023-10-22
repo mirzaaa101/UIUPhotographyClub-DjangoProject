@@ -4,10 +4,12 @@ from django.contrib.auth.models import User
 from .models import RegistrationRequest
 from UIUPC import settings
 from django.core.mail import send_mail
+from .models import Notice
+from .models import FAQ
 
 def home(request):
-    return render(request, 'home.html', {})
-
+    recent_notices = Notice.objects.order_by('-created_at')[:2]
+    return render(request, 'home.html', {'recent_notices': recent_notices})
 
 def registration(request):
     if request.method == 'POST':
@@ -43,3 +45,8 @@ def registration(request):
         return redirect('registration')
     else:
         return render(request, 'registration.html', {})
+
+
+def faqs(request):
+    faqs = FAQ.objects.all()
+    return render(request,'faqs.html', {'faqs':faqs})
