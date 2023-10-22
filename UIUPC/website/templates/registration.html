@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{%load static%}
+{%block title%} Registration{%endblock%}
+{% block content%}
+<style>
+    #container {
+        height: 750px;
+        width: 740px;
+        background-color: transparent;
+        margin: 0 0 0 23%;
+    }
+    #msg {
+        width: 800px;
+        margin-left: 20%;
+    }
+</style>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="msg">
+        <strong> {{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+<div class="container" id="container">
+    <p class="fs-3 fw-bold">Registration Form</p>
+    <p class="text-muted">Please fill up the form carefully, our admin will review your registration form and contact you soon.</p>
+    <form method="POST" action="{% url 'registration' %}">
+      {% csrf_token %}
+        <div class="mb-2">
+          <label for="exampleInputEmail1" class="form-label">UIU Email Address:</label>
+          <input type="email" class="form-control" pattern=".*uiu.ac.bd$" name="email" required>
+        </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">UIU ID Number:</label>
+            <input type="text" class="form-control" name="idnumber" required>
+          </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">First Name:</label>
+            <input type="text" class="form-control" name="firstname" required>
+          </div>
+          <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" name="lastname" required>
+          </div>
+          <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Department:</label>
+            <input type="text" class="form-control" name="department" required>
+          </div>
+          <div class="mb-4">
+            <label for="exampleInputEmail1" class="form-label">Date of Birth:</label>
+            <input type="date" class="form-control" name="dob" required>
+          </div>
+        <button type="submit" class="btn btn-primary">Confirm Registration</button>
+      </form>
+</div>
+{%endblock%}
