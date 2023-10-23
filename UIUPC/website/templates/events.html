@@ -28,6 +28,10 @@
   #event-img{
     max-height: auto;
   }
+  .card-body{
+    text-align: left;
+    margin-top: 2%;
+  }
   .card-title:hover{
     text-decoration: underline;
     color: #3366CC;
@@ -106,36 +110,7 @@
             <a href="{% url 'event_detail' event.e_id %}" style="text-decoration: none; color: black;">
               <h5 class="card-title">{{ event.title }}</h5>
             </a>
-            <p class="card-text">{{ event.description }}</p>
-            <div class="container" style="width: auto;">
-              <div class="row g-2">
-                <div class="col-4">
-                  <div class="p-3 border bg-light text-center">
-                    <i class="fas fa-calendar-day"></i> {{ event.event_date|date:"j M" }}
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="p-3 border bg-light text-center">
-                    <i class="fas fa-clock"></i> {{ event.event_time }}
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="p-3 border bg-light text-center">
-                    <i class="fas fa-map-marker-alt"></i> {{ event.location }}
-                  </div>
-                </div>
-                {% if event.join_event %}
-                <div class="col">
-                  <div class="p-1 text-center">
-                     <i class="fa-solid fa-right-to-bracket"></i>
-                     <button class="btn btn-primary">
-                      <a href="" class="text-light" style="text-decoration: none;">Participate</a>
-                      </button>
-                  </div>
-                </div>
-                {% endif %}
-              </div>
-            </div>
+            <p class="card-text">{{ event.description|truncatewords:50 }} <a href="{% url 'event_detail' event.e_id %}">...continue reading</a></p>
             <small class="text-muted">Last updated {{ event.time_since_creation }}</small>
           </div>
         </div>

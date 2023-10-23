@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import RegistrationRequest
+from .models import RegistrationRequest, EventRequest, Notice, FAQ, Event
 from UIUPC import settings
 from django.core.mail import send_mail
 from django.utils import timezone
 from datetime import timedelta
-from .models import Notice, FAQ, Event
 
 def home(request):
     recent_notices = Notice.objects.order_by('-created_at')[:2]
@@ -21,8 +20,8 @@ def registration(request):
         lastname = request.POST['lastname']
         department = request.POST['department']
         dob = request.POST['dob']
-
-        if User.objects.filter(username=email).exists():
+        existing_participants = EventRequest.objects.filter(email=email)
+        if User.objects.filter(username=email).exists() or existing_participants.exists() :
             messages.error(request, 'The email address is already in use.Please try with another email.')
             return redirect('registration')
 
@@ -40,7 +39,7 @@ def registration(request):
 
         #Welcoming Email
         subject = "Welcome To UIU Photography Club"
-        message = f"Dear {firstname} {lastname},\nThank you for registering at UIUPC, we will contact you soon after reviewing your registration information.\n\nThanks for your patience--Team Meta"
+        message = f"Dear {firstname} {lastname},\n\nThank you for registering at UIU Photography Club. We have received your registration information and will review it shortly.\n\nYour patience is appreciated as we process your request. If you have any questions or need further information, feel free to reach out to us.\n\nBest regards,\nTeam UIU Photography Club"
         from_email = settings.EMAIL_HOST_USER
         to_email = [email]
         send_mail(subject, message, from_email, to_email, fail_silently=True)
@@ -74,3 +73,48 @@ def events(request):
 def event_detail(request, e_id):
     event = get_object_or_404(Event, pk=e_id)
     return render(request, 'event_detail.html', {'event': event})
+
+
+def participate(request, e_id):
+    event = get_object_or_404(Event, pk=e_id)
+    if request.method == 'POST':
+        eventname = request.POST['eventname']
+        eventdate = request.POST['eventdate']
+        eventtime = request.POST['eventtime']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        firstname = request.POST['firstname']
+        lastname = request.POST['lastname']
+        location = request.POST['loaction']
+
+        existing_participants = EventRequest.objects.filter(email=email)
+        if existing_participants.exists():
+            messages.error(request, 'You have already registered for this event.')
+            return redirect('participate', e_id=event.e_id)
+
+        new_event_request = EventRequest(
+            eventname=eventname,
+            eventdate=eventdate,
+            eventtime=eventtime,
+            email=email,
+            phone=phone,
+            firstname=firstname,
+            lastname=lastname,
+            location=location
+        )
+
+        new_event_request.save()
+        messages.error(request, 'Thank you for participating. We will send you a confirmation email soon.')
+
+        # Welcoming Email to Event Participants
+        subject = "Welcome to the UIUPC Event"
+        message = f"Dear {firstname} {lastname},\n\nWelcome to the UIUPC event! We are thrilled that you've decided to participate.\n\nEvent Details:\nEvent Name: {eventname}\nDate: {eventdate}\nTime: {eventtime}\n\nWe can't wait to see you at the event. Your participation is highly appreciated, and we're looking forward to a great experience together.\n\nIf you have any questions or need further information before the event, please don't hesitate to reach out to us.\n\nBest regards,\nTeam UIUPC"
+
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [email]
+        send_mail(subject, message, from_email, to_email, fail_silently=True)
+        return redirect('participate', e_id)
+
+    else:
+        event = get_object_or_404(Event, pk=e_id)
+        return render(request, 'participate.html', {'event': event})

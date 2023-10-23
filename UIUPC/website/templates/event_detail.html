@@ -1,6 +1,70 @@
 {% extends 'base.html'%}
 {%load static%}
-{%block title%} Events{%endblock%}
+{%block title%}Events Details{%endblock%}
 {% block content%}
-<h1>{{event.title}}</h1>
+<style>
+#head{
+    text-align: center;
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0.025);
+}
+#left{
+    float: left;
+    height: 500px;
+    width: 40%;
+    margin-top: 3%;
+    margin-right: 20px;
+}
+#right{
+    float: right;
+    height: 500;
+    width: 50%;
+    margin-top: 3%;
+}
+#event-img{
+    max-height: auto;
+    max-width: auto;
+}
+</style>
+<div class="container my-3" id="head">
+    <p class="fs-2 fw-bold">{{ event.title}}</p>
+    <div class="container" style="width: auto;">
+        <div class="row g-2">
+          <div class="col-4">
+            <div class="p-3 border bg-light text-center">
+              <i class="fas fa-calendar-day"></i> {{ event.event_date|date:"j M" }}
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 border bg-light text-center">
+              <i class="fas fa-clock"></i> {{ event.event_time }}
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 border bg-light text-center">
+              <i class="fas fa-map-marker-alt"></i> {{ event.location }}
+            </div>
+          </div>
+          {% if event.join_event %}
+          <div class="col">
+            <div class="p-1 text-center">
+               <i class="fa-solid fa-right-to-bracket"></i>
+               <button class="btn btn-primary">
+                <a href="{% url 'participate' event.e_id %}" class="text-light" style="text-decoration: none;">Participate</a>
+                </button>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div id="left">
+        <p class="fs-5 fw-bold" style="text-align: justify;">
+            {{ event.description }}
+        </p>
+      </div>
+      <div id="right">
+        <img src="{{ event.event_photo.url }}" class="img-fluid rounded-start" alt="..." id="event-img">
+      </div>
+</div>
+
 {%endblock%}

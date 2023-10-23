@@ -51,3 +51,18 @@ class Event(models.Model):
 
     def __str__(self):
         return f"Event-: {self.title}"
+
+class EventRequest(models.Model):
+    p_id = models.AutoField(primary_key=True)
+    participated_at = models.DateTimeField(auto_now_add=True)
+    eventname = models.CharField(max_length=200)
+    eventdate = models.DateField()
+    eventtime = models.TimeField()
+    email = models.EmailField(max_length=100, unique=True)
+    phone = models.CharField(max_length=11)
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Participant Name-: {self.firstname} {self.lastname}"
