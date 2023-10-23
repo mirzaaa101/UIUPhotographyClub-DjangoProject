@@ -9,7 +9,7 @@ urlpatterns = [
     path('onlineregistration', views.registration, name='registration'),
     path('faqs', views.faqs, name='faqs'),
     path('events', views.events, name='events'),
-    path('events/<int:event_id>/', views.event_detail, name='event_detail')
+    path('<int:e_id>/', views.event_detail, name='event_detail')
 ]
 
 if settings.DEBUG:

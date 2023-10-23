@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import RegistrationRequest
 from UIUPC import settings
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from datetime import timedelta
 from .models import Notice, FAQ, Event
 
 def home(request):
@@ -53,14 +53,24 @@ def faqs(request):
     faqs = FAQ.objects.all()
     return render(request,'faqs.html', {'faqs':faqs})
 
-
 def events(request):
-    events = Event.objects.all()
+    events = Event.objects.order_by('-created_at')
+
     for event in events:
         time_difference = timezone.now() - event.created_at
-        event.time_since_creation = time_difference.total_seconds() / 60
-    return render(request, 'events.html', {'events':events})
+        minutes_since_creation = int(time_difference.total_seconds() / 60)
 
-def event_detail(request, event_id):
-    event = get_object_or_404(Event, pk=event_id)
+        if minutes_since_creation < 60:
+            event.time_since_creation = f"{minutes_since_creation} minutes ago"
+        elif minutes_since_creation < 1440:
+            hours_since_creation = minutes_since_creation // 60
+            event.time_since_creation = f"{hours_since_creation} hours ago"
+        else:
+            days_since_creation = minutes_since_creation // 1440
+            event.time_since_creation = f"{days_since_creation} days ago"
+
+    return render(request, 'events.html', {'events': events})
+
+def event_detail(request, e_id):
+    event = get_object_or_404(Event, pk=e_id)
     return render(request, 'event_detail.html', {'event': event})
