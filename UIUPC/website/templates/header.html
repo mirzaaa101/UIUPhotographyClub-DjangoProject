@@ -39,9 +39,11 @@
       <strong style="font-style: italic;"><a href="{% url 'home' %}" style="text-decoration: none;color: black;font-size: 20px;">UIUPC</a></strong>
     </a>
 
-    <form class="d-flex justify-content-center navbar-form" style="width: 600px;margin-left: 250px;">
-      <input class="form-control me-2" type="search" placeholder="Search For Events..." aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+    <form class="d-flex justify-content-center navbar-form" style="width: 600px;margin-left: 250px;" action="{% url 'search_events' %}" method="POST">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" name="searched" placeholder="Search For Events..." aria-label="Search">
+      <button class="btn btn-outline-success" type="submit" name="submit">Search</button>
+      <!-- <input class="btn btn-outline-success" type="search" name="submit" value="Search"> -->
     </form>
 
     <div class="collapse navbar-collapse me-2" id="navbarSupportedContent">

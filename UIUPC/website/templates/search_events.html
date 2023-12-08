@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{%load static%}
+{%block title%} Events Search {%endblock%}
+{% block content%}
+<style>
+    #search-img{
+        height: 100px;
+        width: 100px;
+    }
+</style>
+<center>
+    <h3>You Searched For {{searched}}</h3>
+    {% if no_results_found %}
+    <p>No results found.</p>
+    <img src="{% static 'Files/not_found.jpg' %}" alt="" height="500px" width="500px">
+    {% else %}
+    <p>Search results</p>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Event</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        {% for event in events %}
+        <tbody>
+          <tr>
+            <td>
+                <img src="{{ event.event_photo.url }}" class="img-fluid rounded-start" alt="Event Image" id="search-img">
+            </td>
+            <td><a href="{% url 'event_detail' event.e_id %}" id="event-title">{{event.title}}</a></td>
+            <td>{{event.event_date}}</td>
+          </tr>
+        </tbody>
+        {%endfor%}
+      </table>
+    {%endif%}
+</center>
+{%endblock%}

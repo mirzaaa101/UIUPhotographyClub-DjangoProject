@@ -5,6 +5,7 @@ from .models import RegistrationRequest, EventRequest, Notice, FAQ, Event, About
 from UIUPC import settings
 from django.core.mail import send_mail
 from django.utils import timezone
+from django.db.models import Q
 
 def home(request):
     recent_notices = Notice.objects.order_by('-created_at')[:2]
@@ -125,3 +126,14 @@ def about(request):
     devs = About.objects.all()
     return render(request,'about.html', {'devs':devs})
 
+
+def search_events(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        events = Event.objects.filter(Q(title__contains=searched) | Q(description__contains=searched))
+        no_results_found = len(events) == 0
+        if len(searched) == 0:
+            return home(request)
+        return render(request, 'search_events.html', {'searched':searched, 'events':events, 'no_results_found': no_results_found})
+    else:
+        return home(request)
