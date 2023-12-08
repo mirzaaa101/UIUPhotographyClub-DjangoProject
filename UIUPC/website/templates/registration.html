@@ -29,31 +29,36 @@
     <p class="text-muted">Please fill up the form carefully, our admin will review your registration form and contact you soon.</p>
     <form method="POST" action="{% url 'registration' %}">
       {% csrf_token %}
-        <div class="mb-2">
-          <label for="exampleInputEmail1" class="form-label">UIU Email Address:</label>
-          <input type="email" class="form-control" pattern=".*uiu.ac.bd$" name="email" required>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="UIU Email Address" pattern=".*uiu.ac.bd$" name="email" required>
         </div>
-        <div class="mb-2">
-            <label for="exampleInputEmail1" class="form-label">UIU ID Number:</label>
-            <input type="text" class="form-control" name="idnumber" required>
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="UIU ID Number" name="idnumber" required>
           </div>
-        <div class="mb-2">
-            <label for="exampleInputEmail1" class="form-label">First Name:</label>
-            <input type="text" class="form-control" name="firstname" required>
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="First Name" name="firstname" required>
           </div>
-          <div class="mb-2">
-            <label for="exampleInputEmail1" class="form-label">Last Name:</label>
-            <input type="text" class="form-control" name="lastname" required>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Last Name" name="lastname" required>
           </div>
-          <div class="mb-2">
-            <label for="exampleInputEmail1" class="form-label">Department:</label>
-            <input type="text" class="form-control" name="department" required>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Department" name="department" required>
           </div>
-          <div class="mb-4">
-            <label for="exampleInputEmail1" class="form-label">Date of Birth:</label>
-            <input type="date" class="form-control" name="dob" required>
+          <div class="mb-3">
+            <input type="date" class="form-control" placeholder="Date of Birth" name="dob" required>
           </div>
-        <button type="submit" class="btn btn-primary">Confirm Registration</button>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Bkash Transaction Number" name="transaction-number" maxlength="20" required>
+            <div id="emailHelp" class="form-text my-2" style="margin-left: 20px;">
+              <strong>
+                We charge 300 BDT only to recruit a member. This is for only one time.
+                Please send us your member fee at out Bkash [+88 016 40720014], and the the transaction number.
+                We're looking to forward to work with you, thanks.
+              </strong>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Confirm Registration</button>
       </form>
 </div>
 {%endblock%}

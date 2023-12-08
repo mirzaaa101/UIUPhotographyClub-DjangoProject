@@ -8,6 +8,7 @@ class RegistrationRequest(models.Model):
     lastname = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     dob = models.DateField()
+    transaction_number = models.CharField(max_length=20, default="xxxxxxxxxxxxxxxxxx")
     is_accepted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -66,3 +67,17 @@ class EventRequest(models.Model):
 
     def __str__(self):
         return f"Participant Name-: {self.firstname} {self.lastname}"
+
+
+class About(models.Model):
+    dev_img = models.ImageField(upload_to='Files/Teams/')
+    dev_name = models.CharField(max_length=100)
+    dev_role = models.CharField(max_length=50)
+    dev_description = models.CharField(max_length=300)
+
+
+    def __str__(self):
+        return f"{self.dev_name}"
+
+    class Meta:
+        verbose_name_plural = 'About'

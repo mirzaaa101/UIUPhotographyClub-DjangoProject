@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import RegistrationRequest, EventRequest, Notice, FAQ, Event
+from .models import RegistrationRequest, EventRequest, Notice, FAQ, Event, About
 from UIUPC import settings
 from django.core.mail import send_mail
 from django.utils import timezone
-from datetime import timedelta
 
 def home(request):
     recent_notices = Notice.objects.order_by('-created_at')[:2]
@@ -20,6 +19,7 @@ def registration(request):
         lastname = request.POST['lastname']
         department = request.POST['department']
         dob = request.POST['dob']
+        transaction_number = request.POST['transaction-number']
         existing_participants = EventRequest.objects.filter(email=email)
         if User.objects.filter(username=email).exists() or existing_participants.exists() :
             messages.error(request, 'The email address is already in use.Please try with another email.')
@@ -32,7 +32,8 @@ def registration(request):
             firstname=firstname,
             lastname=lastname,
             department=department,
-            dob=dob
+            dob=dob,
+            transaction_number = transaction_number
         )
         new_request.save()
         messages.error(request, 'Thank you for completing the registration. We will send you a confirmation email soon.')
@@ -118,3 +119,9 @@ def participate(request, e_id):
     else:
         event = get_object_or_404(Event, pk=e_id)
         return render(request, 'participate.html', {'event': event})
+
+
+def about(request):
+    devs = About.objects.all()
+    return render(request,'about.html', {'devs':devs})
+
