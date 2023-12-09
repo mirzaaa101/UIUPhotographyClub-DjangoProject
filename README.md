@@ -35,7 +35,7 @@ To set up this project on your local machine, follow these steps:
 4. Activate the virtual environment:
    - On Windows: `venv\Scripts\activate`
    - On macOS and Linux: `source venv/bin/activate`
-5. Install project dependencies: `pip install -r requirements.txt`
+5. Create the database using: `python mydb.py`
 6. Configure your MySQL database in the `settings.py` file.
 7. Apply migrations: `python manage.py migrate`
 8. Create a superuser account: `python manage.py createsuperuser`
