@@ -1,7 +1,22 @@
 # Photography Club Website
 
 Welcome to the Photography Club website, a project developed by our team for the web programming course. This web application serves as a platform for photography enthusiasts to connect, share their work, and engage with the club's activities.
+# Prototype
+![home-view-1](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/799b7ac8-53ab-4e8a-99dc-671c70950da8)
+![home-view-2](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/473adff1-639e-4d12-a1a7-b82d961ee8c2)
+![footer](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/44929c77-a45d-46cc-b11a-2ad2a00db12e)
+***
+![search](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/8dd85013-0bb5-47a9-94d0-d120b4c2bfd1)
+***
 
+![event-view-1](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/cf3d02ea-9dc7-4613-b1a3-f6ec6101d693)
+![event-view-2](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/61c8a0bc-3da3-4409-8ebe-d4f75bb2deb8)
+![event-view-3](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/8f4c2c5d-987d-44f5-a752-6eb7543ec7b1)
+***
+![faqs](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/22775799-fe33-42da-ae09-bb07a4cf75ba)
+***
+![about](https://github.com/mirzaaa101/UIUPhotographyClub-DjangoProject/assets/132736299/275d1300-641c-4e2c-a336-ae5e09340b07)
+***
 ## Team Members
    ### Group Name-TeamMeta
 
